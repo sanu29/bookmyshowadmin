@@ -9,8 +9,6 @@ router.get("/movies/:id",async (req,res) => {
   
   try{
     const  id =(req.params.id)
-  console.log(id)
-  console.log("paramsChecked", req.params)
   const result = await movies.find( {"_id": id})
   
   res.json(result)
@@ -21,7 +19,7 @@ router.get("/movies/:id",async (req,res) => {
 router.get("/movies/",async (req,res)=>{
   try{
   const data = await movies.find({});     
-  console.log("Successfully got movies data")
+
   res.json({data})
 }
 catch (err) {
@@ -31,9 +29,9 @@ catch (err) {
 
 router.get("/genere/",async (req,res)=>{
   try{
-    console.log(genere)
+
   const data = await genere.find({});     
-  console.log("Successfully got genere data")
+
   res.json({data})
 }
 catch (err) {
@@ -44,9 +42,9 @@ catch (err) {
 
 router.get("/theater/",async (req,res)=>{
   try{
-    console.log(theater)
+
   const data = await theater.find({});     
-  console.log("Successfully got theater data")
+
   res.json({data})
 }
 catch (err) {
@@ -57,10 +55,9 @@ catch (err) {
 router.get("/theater/:id",async (req,res)=>{
   try{
     const  id =(req.params.id)
-  console.log(id)
-  console.log("paramsChecked", req.params)
+
   const data = await theater.find( {  "_id": id});     
-  console.log("Successfully got theater data")
+
   res.json({data})
 }
 catch (err) {
@@ -73,7 +70,7 @@ router.get("/movie/allTheater/:location/:id",async (req,res)=>{
 
     const  location =(req.params.location)
     const  id =(req.params.id)
-    console.log("paramsChecked", req.params)
+
     let data = await theater.find({})
       let locData =  data.filter((item)=>{
         if(item.Location===location)
@@ -84,7 +81,7 @@ let mainData= []
     locData.map((item)=>item.Movies.filter((val)=>{if(val.MovieId['$oid']==id){
       mainData.push({TheaterName:item.TheaterName,val})
     }}))
-  console.log("Successfully got theater data")
+
   res.json({data:mainData})
 }
 catch (err) {
@@ -93,14 +90,14 @@ catch (err) {
 })
 
 router.post("/movies",async (req,res) => {
-  console.log("in post")
+
   try{
 
-    console.log(req.body)
+   
     const movie = req.body;
-    console.log(movie)
+
     const NewMovie = new movies(movie);
-    console.log(NewMovie)
+ 
     const savedProduct = await NewMovie.save();
     const data = await movies.find({});   
     res.json(data)
