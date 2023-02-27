@@ -5,7 +5,7 @@ const {genere} = require("../Models/Genere.model")
 const {theater} = require("../Models/Theater.model")
 const mongoose = require("mongoose")
 
-router.get("/movies/:id",async (req,res) => {
+router.get("/api/movies/:id",async (req,res) => {
   
   try{
     const  id =(req.params.id)
@@ -16,7 +16,7 @@ router.get("/movies/:id",async (req,res) => {
   catch(err){res.status(500).json({ success: false, message: "unable to get products", errorMessage: err.message })}
   })
 
-router.get("/movies/",async (req,res)=>{
+router.get("/api/movies/",async (req,res)=>{
   try{
   const data = await movies.find({});     
 
@@ -27,7 +27,7 @@ catch (err) {
 }
 })
 
-router.get("/genere/",async (req,res)=>{
+router.get("/api/genere/",async (req,res)=>{
   try{
 
   const data = await genere.find({});     
@@ -40,7 +40,7 @@ catch (err) {
 })
 
 
-router.get("/theater/",async (req,res)=>{
+router.get("/api/theater/",async (req,res)=>{
   try{
 
   const data = await theater.find({});     
@@ -52,7 +52,7 @@ catch (err) {
 }
 })
 
-router.get("/theater/:id",async (req,res)=>{
+router.get("/api/theater/:id",async (req,res)=>{
   try{
     const  id =(req.params.id)
 
@@ -65,7 +65,7 @@ catch (err) {
 }
 })
 
-router.get("/movie/allTheater/:location/:id",async (req,res)=>{
+router.get("/api/movie/allTheater/:location/:id",async (req,res)=>{
   try{
 
     const  location =(req.params.location)
@@ -89,7 +89,7 @@ catch (err) {
 }
 })
 
-router.post("/movies",async (req,res) => {
+router.post("/api/movies",async (req,res) => {
 
   try{
 
@@ -105,7 +105,7 @@ router.post("/movies",async (req,res) => {
   catch(err){res.status(500).json({ success: false, message: "unable to get products", errorMessage: err.message })}
   })
 
-router.post("/movies/update",async (req,res) => {
+router.post("/api/movies/update",async (req,res) => {
 
   try{
     const query = {_id: req.body.data._id};
